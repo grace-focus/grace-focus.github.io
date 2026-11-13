@@ -232,7 +232,7 @@
     <ul>
       <li><a class="link-row" href="https://github.com/samir-scripts/grace"><span class="row-label"><Github aria-hidden="true" />repository</span><span aria-hidden="true">›</span></a></li>
       <li><a class="link-row" href="https://github.com/samir-scripts/grace/releases"><span class="row-label"><Tag aria-hidden="true" />releases</span><span aria-hidden="true">›</span></a></li>
-      <li><a class="link-row" href="https://github.com/samir-scripts/grace/blob/release/README.md"><span class="row-label"><BookOpen aria-hidden="true" />documentation</span><span aria-hidden="true">›</span></a></li>
+      <li><a class="link-row" href="https://github.com/samir-scripts/grace/blob/dev/README.md"><span class="row-label"><BookOpen aria-hidden="true" />documentation</span><span aria-hidden="true">›</span></a></li>
     </ul>
   </section>
   <section aria-labelledby="developer-heading">
