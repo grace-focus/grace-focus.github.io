@@ -1,10 +1,12 @@
 # grace. landing page
 
+Canonical website: https://grace-focus.github.io/. Source: https://github.com/grace-focus/grace-focus.github.io. The original repository and its Pages URLs remain available for legacy links.
+
 A SvelteKit landing page forked from [skarokin/porty](https://github.com/skarokin/porty).
 
 The project section links to the Grace repository, releases and README documentation. The developer rows link to the project owner’s GitHub and LinkedIn profiles; portfolio remains visibly pending until a real destination is available. Each row keeps its matching icon.
 
-The landing page’s privacy row links to a dedicated, statically prerendered policy page at `/privacy/` (or `/grace-landing-page/privacy/` on GitHub Pages). Its typography, palette, spacing and back link follow the landing page’s existing style. The Chrome companion policy’s original effective date and disclosures are preserved, and the complete text is readable without JavaScript. Publishing this checkout and changing external store/support URLs are separate steps.
+The landing page’s privacy row links to a dedicated, statically prerendered policy page at `/privacy/` (or `/grace-landing-page/privacy/` on GitHub Pages). Its typography, palette, spacing and back link follow the landing page’s existing style. The shared Chrome/Firefox policy retains the original Chrome effective date and records the Firefox addition, and the complete text is readable without JavaScript. The canonical organization Pages deployment serves both public routes. Experimental x64 download rows are enabled only after exact versioned assets are publicly verified.
 
 The logo starts with a stepped ripple. Click it to cycle through the ASCII donut, a blocky flip, and back to the ripple; each effect plays until the next click. A blocky color wave crosses the stationary wordmark. Reduced-motion preferences show a static identity.
 

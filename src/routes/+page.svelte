@@ -1,8 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { base } from '$app/paths';
-  import { BookOpen, BriefcaseBusiness, Github, Linkedin, ShieldCheck, Tag } from '@lucide/svelte';
+  import { BookOpen, BriefcaseBusiness, Download, Github, Linkedin, ShieldCheck, Tag } from '@lucide/svelte';
 
+  // Enable only after exact release assets are public and verified.
+  const betaDownloadsReady = false;
   let motionEnabled = $state(false);
   let markPath = $state('');
   type LogoAnimation = 'ripple' | 'ascii' | 'flip';
@@ -187,6 +189,10 @@
   });
 </script>
 
+<svelte:head>
+  <link rel="canonical" href="https://grace-focus.github.io/" />
+</svelte:head>
+
 <div class="landing" class:motion-enabled={motionEnabled}>
 <div class="identity">
   <button
@@ -211,12 +217,22 @@
   <h1 aria-label="grace."><span class="wordmark" aria-hidden="true">{#each wordmarkCells as row, y}<span class="wordmark-row">{#each row as cell, x}<span class="wordmark-cell" style:color={wordmarkColor(x, y)}>{cell}</span>{/each}</span>{/each}</span></h1>
 </div>
 <p class="tagline">pomodoro timer &amp; app/website blocker in 1</p>
+  {#if betaDownloadsReady}
+  <section aria-labelledby="downloads-heading">
+    <h2 id="downloads-heading">experimental downloads · 1.7.2-beta.1</h2>
+    <ul>
+      <li><a class="link-row" href="https://github.com/samir-scripts/grace/releases/download/v1.7.2-beta.1/grace-windows-x64-1.7.2-beta.1-setup.exe"><span class="row-label"><Download aria-hidden="true" />Windows x64</span><span class="pending">beta</span></a></li>
+      <li><a class="link-row" href="https://github.com/samir-scripts/grace/releases/download/v1.7.2-beta.1/grace-ubuntu-x64-1.7.2-beta.1.deb"><span class="row-label"><Download aria-hidden="true" />Ubuntu x64</span><span class="pending">beta</span></a></li>
+    </ul>
+    <p class="beta-note">Experimental beta — packaged integration unverified. Blocking and recovery behavior on Windows and Ubuntu remain unverified. Install only in a disposable test environment; updates are manual.</p>
+  </section>
+  {/if}
   <section aria-labelledby="project-heading">
     <h2 id="project-heading">project</h2>
     <ul>
       <li><a class="link-row" href="https://github.com/samir-scripts/grace"><span class="row-label"><Github aria-hidden="true" />repository</span><span aria-hidden="true">›</span></a></li>
       <li><a class="link-row" href="https://github.com/samir-scripts/grace/releases"><span class="row-label"><Tag aria-hidden="true" />releases</span><span aria-hidden="true">›</span></a></li>
-      <li><a class="link-row" href="https://github.com/samir-scripts/grace/blob/main/README.md"><span class="row-label"><BookOpen aria-hidden="true" />documentation</span><span aria-hidden="true">›</span></a></li>
+      <li><a class="link-row" href="https://github.com/samir-scripts/grace/blob/release/README.md"><span class="row-label"><BookOpen aria-hidden="true" />documentation</span><span aria-hidden="true">›</span></a></li>
     </ul>
   </section>
   <section aria-labelledby="developer-heading">
@@ -256,6 +272,7 @@
   .link-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; padding: 10px 12px; font-size: 14px; line-height: 1.5; }
   .row-label { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
   .row-label :global(svg) { width: 16px; height: 16px; flex: 0 0 auto; }
+  .beta-note { margin: 0; padding: 4px 12px 16px; font-size: 12px; line-height: 1.8; color: var(--color-muted); }
   .pending { color: var(--color-muted); font-size: 12px; line-height: 1.5; }
   a.link-row { color: inherit; text-decoration: none; cursor: pointer; }
   a.link-row:hover, a.link-row:focus-visible { background: var(--color-row-hover); }
