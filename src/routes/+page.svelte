@@ -4,7 +4,7 @@
   import { BookOpen, BriefcaseBusiness, Download, Github, Linkedin, ShieldCheck, Tag } from '@lucide/svelte';
 
   // Enable only after exact release assets are public and verified.
-  const betaDownloadsReady = false;
+  const betaDownloadsReady = true;
   let motionEnabled = $state(false);
   let markPath = $state('');
   type LogoAnimation = 'ripple' | 'ascii' | 'flip';
