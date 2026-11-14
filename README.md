@@ -8,7 +8,7 @@ The project section links to the Grace repository, releases and README documenta
 
 The landing page’s privacy row links to a dedicated, statically prerendered policy page at `/privacy/` (or `/grace-landing-page/privacy/` on GitHub Pages). Its typography, palette, spacing and back link follow the landing page’s existing style. The shared Chrome/Firefox policy retains the original Chrome effective date and records the Firefox addition, and the complete text is readable without JavaScript. The canonical organization Pages deployment serves both public routes. Experimental x64 download rows are enabled only after exact versioned assets are publicly verified.
 
-The logo starts with a stepped ripple. Click it to cycle through the ASCII donut, a blocky flip, and back to the ripple; each effect plays until the next click. A blocky color wave crosses the stationary wordmark. Reduced-motion preferences show a static identity.
+The logo starts with a blocky flip. Click it to cycle through the stepped ripple, the ASCII donut, and back to the flip; each effect plays until the next click. A blocky color wave crosses the stationary wordmark. Reduced-motion preferences show a static identity.
 
 ## Development
 

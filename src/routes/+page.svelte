@@ -8,8 +8,8 @@
   let motionEnabled = $state(false);
   let markPath = $state('');
   type LogoAnimation = 'ripple' | 'ascii' | 'flip';
-  const logoAnimations: LogoAnimation[] = ['ripple', 'ascii', 'flip'];
-  let logoAnimation = $state<LogoAnimation>('ripple');
+  const logoAnimations: LogoAnimation[] = ['flip', 'ripple', 'ascii'];
+  let logoAnimation = $state<LogoAnimation>('flip');
   let donutFrame = $state('');
   let flipPath = $state('');
   let wordmarkTime = $state(0);
@@ -45,18 +45,22 @@
     return Math.abs(x - edge) <= 2 ? waveColors[pass % waveColors.length] : undefined;
   }
   const waveOffset = (x: number, time: number) => Math.round(Math.sin(x * 0.9 - time) * 2) / 4;
-  const staticMark = 'M3 0H11V1H12V2H13V3H12V4H11V5H3V4H2V3H1V2H2V1H3Z M5 1H9V2H10V3H9V4H5V3H4V2H5Z';
+  const staticMark = 'M3 0H11V1H12V2H13V3H12V4H11V5H3V4H2V3H1V2H2V1H3Z M5 1H9V2H10V3H9V4H5V3H4V2H5Z M6 1.9H8V3.1H6Z';
 
   function renderMark(time: number): string {
-    return blocks.map(({ x, y }) => {
+    const ring = blocks.map(({ x, y }) => {
       const offset = waveOffset(x, time);
       return `M${x} ${y + offset}h1v1h-1Z`;
     }).join(' ');
+    const dotOffset = waveOffset(7, time);
+    return `${ring} M6 ${1.9 + dotOffset}h2v1.2h-2Z`;
   }
 
   function renderFlip(progress: number): string {
     const scale = Math.cos(2 * Math.PI * progress * progress * (3 - 2 * progress));
-    return blocks.map(({ x, y }) => `M${x} ${2 + Math.round((y - 2) * scale)}h1v1h-1Z`).join(' ');
+    const ring = blocks.map(({ x, y }) => `M${x} ${2 + Math.round((y - 2) * scale)}h1v1h-1Z`).join(' ');
+    const dotHeight = 1.2 * Math.abs(Math.round(scale * 2) / 2);
+    return `${ring} M6 ${2.5 - dotHeight / 2}h2v${dotHeight}h-2Z`;
   }
 
   onMount(() => {

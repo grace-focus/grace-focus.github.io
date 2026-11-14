@@ -36,7 +36,7 @@ Inherited routes/components are not a mandate to redesign or remove them. Inspec
 
 - Preserve the navy/red palette, locally bundled JetBrains Mono, terminal-character identity, compact composition and generous whitespace. Reuse CSS tokens rather than hardcoding new colors.
 - Keep the logo and `grace.` wordmark side by side down to 320px. Keep wordmark cells stationary; animate the existing hard-edged color wave, not the text geometry.
-- Default logo mode is ripple. Native button activation cycles **ripple → ASCII donut → blocky flip → ripple**. Each mode persists until activation; no timed switching or smooth 3D/extruded replacement.
+- Default logo mode is blocky flip. Native button activation cycles **blocky flip → ripple → ASCII donut → blocky flip**. Each mode persists until activation; no timed switching or smooth 3D/extruded replacement.
 - Preserve a static identity without JavaScript and under initial or live reduced-motion preferences. Keep one animation scheduler, suspend work when the document is hidden and remove listeners/cancel frames on unmount. Do not claim hidden-tab behavior verified unless the browser actually reports the page hidden.
 - Keep copy minimal and preserve the current tagline unless the task changes it. Avoid adding sections, controls or a new component framework without a request.
 - Repository, releases, documentation, developer GitHub and LinkedIn are real, same-tab links. Portfolio remains visibly `pending` and noninteractive until a real destination is supplied; never invent URLs.
