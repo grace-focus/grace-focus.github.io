@@ -9,7 +9,7 @@ Read `README.md` for setup, deployment and the upstream licensing caveat. Use `p
 ## Working loop
 
 1. Read the affected source and its callers before editing. State a short plan for multi-file or behavioral changes; use existing components, styles and dependencies first.
-2. Implement the smallest complete change. Match neighboring Svelte/TypeScript conventions; keep browser-only code in `onMount` or event handlers so prerendering remains safe. Avoid unrelated cleanup, speculative abstractions and repository-wide formatting.
+2. Do not overengineer. All models working on this project must implement only the smallest complete change requested; do not invent sections, features, abstractions or speculative safeguards. Match neighboring Svelte/TypeScript conventions; keep browser-only code in `onMount` or event handlers so prerendering remains safe. Avoid unrelated cleanup and repository-wide formatting.
 3. Search all affected callers and duplicate patterns after changing a contract. Update the implementation, consumers and relevant documentation together; remove code made obsolete by the change.
 4. Verify the changed behavior using the checks below, then inspect the final diff for scope, accidental generated output and secrets.
 5. Make a small checkpoint commit when the change is coherent and verified. Report what changed, checks actually run and any remaining limitation. Never describe an unrun check as passing.
