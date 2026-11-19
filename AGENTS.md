@@ -21,6 +21,7 @@ Ask before adding dependencies, changing deployment behavior or expanding produc
 | Path | Responsibility |
 | --- | --- |
 | `src/routes/+page.svelte` | Landing identity, animation scheduler, tagline, project/developer rows and their local styles |
+| `src/lib/components/GraceDemos.svelte` | Viewport-controlled preview, full demo dialog and transcript |
 | `src/routes/+layout.svelte` | Global CSS import, centered page shell and responsive outer spacing |
 | `src/routes/+layout.ts` | Static prerendering contract |
 | `src/app.css` | Shared palette, typography and global styles |

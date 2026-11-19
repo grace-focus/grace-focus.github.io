@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { base } from '$app/paths';
-  import { BookOpen, BriefcaseBusiness, Github, Linkedin, ShieldCheck, Tag } from '@lucide/svelte';
+  import GraceDemos from '$lib/components/GraceDemos.svelte';
+  import { BriefcaseBusiness, Github, Linkedin, ShieldCheck } from '@lucide/svelte';
 
   let motionEnabled = $state(false);
   let markPath = $state('');
@@ -219,12 +220,11 @@
   <h1 aria-label="grace."><span class="wordmark" aria-hidden="true">{#each wordmarkCells as row, y}<span class="wordmark-row">{#each row as cell, x}<span class="wordmark-cell" style:color={wordmarkColor(x, y)}>{cell}</span>{/each}</span>{/each}</span></h1>
 </div>
 <p class="tagline">pomodoro timer &amp; app/website blocker in 1</p>
+  <GraceDemos />
   <section aria-labelledby="project-heading">
     <h2 id="project-heading">project</h2>
     <ul>
       <li><a class="link-row" href="https://github.com/samir-scripts/grace"><span class="row-label"><Github aria-hidden="true" />repository</span><span aria-hidden="true">›</span></a></li>
-      <li><a class="link-row" href="https://github.com/samir-scripts/grace/releases"><span class="row-label"><Tag aria-hidden="true" />releases</span><span aria-hidden="true">›</span></a></li>
-      <li><a class="link-row" href="https://github.com/samir-scripts/grace/blob/dev/README.md"><span class="row-label"><BookOpen aria-hidden="true" />documentation</span><span aria-hidden="true">›</span></a></li>
     </ul>
   </section>
   <section aria-labelledby="developer-heading">

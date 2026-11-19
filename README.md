@@ -4,7 +4,9 @@ Canonical website: https://grace-focus.github.io/. Source: https://github.com/gr
 
 A SvelteKit landing page forked from [skarokin/porty](https://github.com/skarokin/porty).
 
-The project section links to the Grace repository, releases and README documentation. The developer rows link to the project owner’s GitHub and LinkedIn profiles; portfolio remains visibly pending until a real destination is available. Each row keeps its matching icon.
+The landing page opens with a 24-second preview that starts with a quick Instagram check and follows a Writing round through the first day of a focus streak. Click the preview to open the full walkthrough with playback controls. The preview loops while in view. Use Pause preview to stop playback. It also pauses when it leaves view, when the tab is hidden, and while the full video is open. Visitors who prefer reduced motion start with a still and can play the preview once at a time.
+
+The preview, full recording, and their posters live in `static/demos/`. Keep the desktop README GIF in sync with the preview edit and each transcript in `GraceDemos.svelte` in sync with its own cut. The desktop README opens the player at `#watch-demo`. Verify that link and both media files at the domain root and the configured Pages prefix.
 
 The landing page’s privacy row links to a dedicated, statically prerendered policy page at `/privacy/` (or `/grace-landing-page/privacy/` on GitHub Pages). Its typography, palette, spacing and back link follow the landing page’s existing style. The shared Chrome/Firefox policy retains the original Chrome effective date and records the Firefox addition, and the complete text is readable without JavaScript. The canonical organization Pages deployment serves both public routes.
 
