@@ -2,7 +2,7 @@
   import { replaceState } from '$app/navigation';
   import { base } from '$app/paths';
   import { page } from '$app/state';
-  import { Pause, Play, RotateCcw, X } from '@lucide/svelte';
+  import { BookOpen, FileText, Pause, Play, RotateCcw, X } from '@lucide/svelte';
   import { onMount } from 'svelte';
 
   const recording = `${base}/demos/focus-session.mp4`;
@@ -20,6 +20,7 @@
   let playing = $state(false);
   let ended = $state(false);
   let previewFailed = $state(false);
+  const previewAction = $derived(ended ? 'Replay preview' : playing ? 'Pause preview' : 'Play preview');
   let inView = false;
   let reduceMotion = $state(false);
   let requestedPlay = false;
@@ -154,23 +155,22 @@
 
   <div class="overview-meta">
     {#if ready && !previewFailed}
-      <button class="preview-control" type="button" onclick={togglePreview}>
+      <button class="icon-control" type="button" aria-label={previewAction} title={previewAction} onclick={togglePreview}>
         {#if ended}
-          <RotateCcw size={14} aria-hidden="true" /> Replay preview
+          <RotateCcw size={16} aria-hidden="true" />
         {:else if playing}
-          <Pause size={14} aria-hidden="true" /> Pause preview
+          <Pause size={16} aria-hidden="true" />
         {:else}
-          <Play size={14} aria-hidden="true" /> Play preview
+          <Play size={16} aria-hidden="true" />
         {/if}
       </button>
     {/if}
-    <a class="guide" href="https://github.com/samir-scripts/grace/blob/dev/docs/user-guide.md">User guide</a>
+    <details class="preview-transcript">
+      <summary class="icon-control" aria-label="Preview transcript" title="Preview transcript"><FileText size={16} aria-hidden="true" /></summary>
+      <p>“Just one quick check” appears over Instagram. The view pulls back to reveal Discord and Grace’s idle two-minute Writing timer. The user adds Discord and instagram.com to Writing’s rules, then presses Play. Discord closes and Chrome blocks Instagram. The countdown speeds ahead to the final tick and the start of Short Break. With break access enabled, the same Instagram page loads and Discord reopens. Statistics → This Week shows the completed round and a current streak of one day.</p>
+    </details>
+    <a class="icon-control" href="https://github.com/samir-scripts/grace/blob/dev/docs/user-guide.md" aria-label="User guide" title="User guide"><BookOpen size={16} aria-hidden="true" /></a>
   </div>
-
-  <details>
-    <summary>Preview transcript · 24 seconds</summary>
-    <p>“Just one quick check” appears over Instagram. The view pulls back to reveal Discord and Grace’s idle two-minute Writing timer. The user adds Discord and instagram.com to Writing’s rules, then presses Play. Discord closes and Chrome blocks Instagram. The countdown speeds ahead to the final tick and the start of Short Break. With break access enabled, the same Instagram page loads and Discord reopens. Statistics → This Week shows the completed round and a current streak of one day.</p>
-  </details>
 
   <!-- Native modal supplies Escape, the focus trap and inert background. -->
   <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_noninteractive_element_interactions -->
@@ -214,14 +214,15 @@
   }
   .demo-trigger:hover .watch { text-decoration: underline; text-underline-offset: 3px; }
   .runtime { margin-left: auto; color: var(--color-muted); font-variant-numeric: tabular-nums; }
-  .overview-meta { display: flex; flex-wrap: wrap; gap: 0 14px; align-items: center; }
-  button { display: inline-flex; gap: 6px; align-items: center; min-height: 36px; cursor: pointer; }
-  button:hover { background: var(--color-row-hover); }
-  .preview-control, .close { padding: 4px 6px; font-size: 0.75rem; }
+  .overview-meta { display: flex; align-items: flex-start; gap: 4px; }
+  .icon-control { display: grid; place-items: center; flex: 0 0 auto; width: 44px; height: 44px; color: var(--color-muted); cursor: pointer; }
+  .icon-control:hover, .icon-control:focus-visible { color: var(--color-foreground); background: var(--color-row-hover); }
+  .icon-control::-webkit-details-marker { display: none; }
   details { margin-top: 8px; color: var(--color-muted); font-size: 0.75rem; line-height: 1.6; }
+  .preview-transcript { flex: 1; min-width: 0; margin-top: 0; }
+  .preview-transcript p { max-width: 65ch; }
   details p { margin: 4px 0 0; }
   summary { cursor: pointer; }
-  .guide { margin-inline-start: auto; padding: 10px 4px; font-size: 0.75rem; text-underline-offset: 3px; }
   :is(a, button, summary):focus-visible { outline: 2px solid var(--color-foreground); outline-offset: 3px; }
 
   dialog {
@@ -237,6 +238,7 @@
   dialog::backdrop { background: rgba(14, 18, 25, 0.84); }
   dialog header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
   dialog h2 { margin: 0; font-size: 0.85rem; font-weight: 500; line-height: 1.5; }
-  .close { min-height: 44px; white-space: nowrap; }
+  .close { display: inline-flex; gap: 6px; align-items: center; min-height: 44px; padding: 4px 6px; font-size: 0.75rem; white-space: nowrap; cursor: pointer; }
+  .close:hover { background: var(--color-row-hover); }
   dialog video { max-height: calc(100dvh - 105px); aspect-ratio: 3 / 2; background: #14191c; }
 </style>
