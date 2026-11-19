@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { base } from '$app/paths';
   import GraceDemos from '$lib/components/GraceDemos.svelte';
-  import { BriefcaseBusiness, Github, Linkedin, ShieldCheck } from '@lucide/svelte';
+  import { Github, Linkedin, ShieldCheck, Tag } from '@lucide/svelte';
 
   let motionEnabled = $state(false);
   let markPath = $state('');
@@ -196,6 +196,7 @@
   <link rel="canonical" href="https://grace-focus.github.io/" />
 </svelte:head>
 
+<div class="landing-shell">
 <div class="landing" class:motion-enabled={motionEnabled}>
 <div class="identity">
   <button
@@ -225,14 +226,7 @@
     <h2 id="project-heading">project</h2>
     <ul>
       <li><a class="link-row" href="https://github.com/samir-scripts/grace"><span class="row-label"><Github aria-hidden="true" />repository</span><span aria-hidden="true">›</span></a></li>
-    </ul>
-  </section>
-  <section aria-labelledby="developer-heading">
-    <h2 id="developer-heading">developer</h2>
-    <ul>
-      <li><div class="link-row"><span class="row-label"><BriefcaseBusiness aria-hidden="true" />portfolio</span><span class="pending">pending</span></div></li>
-      <li><a class="link-row" href="https://github.com/samir-scripts"><span class="row-label"><Github aria-hidden="true" />github</span><span aria-hidden="true">›</span></a></li>
-      <li><a class="link-row" href="https://www.linkedin.com/in/samir-katakamsetty1234/"><span class="row-label"><Linkedin aria-hidden="true" />linkedin</span><span aria-hidden="true">›</span></a></li>
+      <li><a class="link-row" href="https://github.com/samir-scripts/grace/releases"><span class="row-label"><Tag aria-hidden="true" />releases</span><span aria-hidden="true">›</span></a></li>
     </ul>
   </section>
   <section aria-labelledby="privacy-heading">
@@ -242,9 +236,15 @@
     </ul>
   </section>
 </div>
+  <nav class="developer-links" aria-label="Developer">
+    <a href="https://github.com/samir-scripts" aria-label="Developer GitHub"><Github size={18} aria-hidden="true" /></a>
+    <a href="https://www.linkedin.com/in/samir-katakamsetty1234/" aria-label="Developer LinkedIn"><Linkedin size={18} aria-hidden="true" /></a>
+  </nav>
+</div>
 
 <style>
-  .landing { width: 100%; max-width: 640px; min-width: 0; }
+  .landing-shell { display: grid; grid-template-rows: 1fr auto; width: 100%; min-width: 0; align-self: stretch; }
+  .landing { width: 100%; max-width: 640px; min-width: 0; place-self: center; }
   .identity { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 24px); text-align: center; }
   .logo { display: grid; width: 13ch; height: 5em; flex: 0 0 auto; color: var(--color-focus); font-family: inherit; font-size: clamp(12px, 4vw, 20px); line-height: 1; user-select: none; }
   .logo { appearance: none; padding: 0; border: 0; background: transparent; box-shadow: none; opacity: 1; cursor: pointer; }
@@ -264,10 +264,12 @@
   .link-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; padding: 10px 12px; font-size: 14px; line-height: 1.5; }
   .row-label { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
   .row-label :global(svg) { width: 16px; height: 16px; flex: 0 0 auto; }
-  .pending { color: var(--color-muted); font-size: 12px; line-height: 1.5; }
   a.link-row { color: inherit; text-decoration: none; cursor: pointer; }
-  a.link-row:hover, a.link-row:focus-visible { background: var(--color-row-hover); }
-  a.link-row:focus-visible { outline: 2px solid var(--color-foreground); outline-offset: -2px; }
+  .developer-links { display: flex; gap: 4px; justify-self: end; margin-top: 16px; }
+  .developer-links a { display: grid; place-items: center; width: 44px; height: 44px; color: var(--color-muted); }
+  .developer-links a:hover, .developer-links a:focus-visible { color: var(--color-foreground); }
+  :is(.link-row, .developer-links a):is(:hover, :focus-visible) { background: var(--color-row-hover); }
+  :is(.link-row, .developer-links a):focus-visible { outline: 2px solid var(--color-foreground); outline-offset: -2px; }
   @media (max-width: 479px) {
     .logo { font-size: 12px; }
     h1 .wordmark { font-size: 8px; }
