@@ -9,7 +9,7 @@ Read `README.md` for setup, deployment and the upstream licensing caveat. Use `p
 ## Working loop
 
 1. Read the affected source and its callers before editing. State a short plan for multi-file or behavioral changes; use existing components, styles and dependencies first.
-2. Implement the smallest complete change. Match neighboring Svelte/TypeScript conventions; keep browser-only code in `onMount` or event handlers so prerendering remains safe. Avoid unrelated cleanup, speculative abstractions and repository-wide formatting.
+2. Do not overengineer. All models working on this project must implement only the smallest complete change requested; do not invent sections, features, abstractions or speculative safeguards. Match neighboring Svelte/TypeScript conventions; keep browser-only code in `onMount` or event handlers so prerendering remains safe. Avoid unrelated cleanup and repository-wide formatting.
 3. Search all affected callers and duplicate patterns after changing a contract. Update the implementation, consumers and relevant documentation together; remove code made obsolete by the change.
 4. Verify the changed behavior using the checks below, then inspect the final diff for scope, accidental generated output and secrets.
 5. Make a small checkpoint commit when the change is coherent and verified. Report what changed, checks actually run and any remaining limitation. Never describe an unrun check as passing.
@@ -21,6 +21,7 @@ Ask before adding dependencies, changing deployment behavior or expanding produc
 | Path | Responsibility |
 | --- | --- |
 | `src/routes/+page.svelte` | Landing identity, animation scheduler, tagline, project/developer rows and their local styles |
+| `src/lib/components/GraceDemos.svelte` | Viewport-controlled preview, full demo dialog and transcript |
 | `src/routes/+layout.svelte` | Global CSS import, centered page shell and responsive outer spacing |
 | `src/routes/+layout.ts` | Static prerendering contract |
 | `src/app.css` | Shared palette, typography and global styles |
@@ -36,7 +37,7 @@ Inherited routes/components are not a mandate to redesign or remove them. Inspec
 
 - Preserve the navy/red palette, locally bundled JetBrains Mono, terminal-character identity, compact composition and generous whitespace. Reuse CSS tokens rather than hardcoding new colors.
 - Keep the logo and `grace.` wordmark side by side down to 320px. Keep wordmark cells stationary; animate the existing hard-edged color wave, not the text geometry.
-- Default logo mode is ripple. Native button activation cycles **ripple → ASCII donut → blocky flip → ripple**. Each mode persists until activation; no timed switching or smooth 3D/extruded replacement.
+- Default logo mode is blocky flip. Native button activation cycles **blocky flip → ripple → ASCII donut → blocky flip**. Each mode persists until activation; no timed switching or smooth 3D/extruded replacement.
 - Preserve a static identity without JavaScript and under initial or live reduced-motion preferences. Keep one animation scheduler, suspend work when the document is hidden and remove listeners/cancel frames on unmount. Do not claim hidden-tab behavior verified unless the browser actually reports the page hidden.
 - Keep copy minimal and preserve the current tagline unless the task changes it. Avoid adding sections, controls or a new component framework without a request.
 - Repository, releases, documentation, developer GitHub and LinkedIn are real, same-tab links. Portfolio remains visibly `pending` and noninteractive until a real destination is supplied; never invent URLs.

@@ -1,15 +1,14 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { base } from '$app/paths';
-  import { BookOpen, BriefcaseBusiness, Download, Github, Linkedin, ShieldCheck, Tag } from '@lucide/svelte';
+  import GraceDemos from '$lib/components/GraceDemos.svelte';
+  import { BriefcaseBusiness, Github, Linkedin, ShieldCheck } from '@lucide/svelte';
 
-  // Enable only after exact release assets are public and verified.
-  const betaDownloadsReady = true;
   let motionEnabled = $state(false);
   let markPath = $state('');
   type LogoAnimation = 'ripple' | 'ascii' | 'flip';
-  const logoAnimations: LogoAnimation[] = ['ripple', 'ascii', 'flip'];
-  let logoAnimation = $state<LogoAnimation>('ripple');
+  const logoAnimations: LogoAnimation[] = ['flip', 'ripple', 'ascii'];
+  let logoAnimation = $state<LogoAnimation>('flip');
   let donutFrame = $state('');
   let flipPath = $state('');
   let wordmarkTime = $state(0);
@@ -45,18 +44,22 @@
     return Math.abs(x - edge) <= 2 ? waveColors[pass % waveColors.length] : undefined;
   }
   const waveOffset = (x: number, time: number) => Math.round(Math.sin(x * 0.9 - time) * 2) / 4;
-  const staticMark = 'M3 0H11V1H12V2H13V3H12V4H11V5H3V4H2V3H1V2H2V1H3Z M5 1H9V2H10V3H9V4H5V3H4V2H5Z';
+  const staticMark = 'M3 0H11V1H12V2H13V3H12V4H11V5H3V4H2V3H1V2H2V1H3Z M5 1H9V2H10V3H9V4H5V3H4V2H5Z M6 1.9H8V3.1H6Z';
 
   function renderMark(time: number): string {
-    return blocks.map(({ x, y }) => {
+    const ring = blocks.map(({ x, y }) => {
       const offset = waveOffset(x, time);
       return `M${x} ${y + offset}h1v1h-1Z`;
     }).join(' ');
+    const dotOffset = waveOffset(7, time);
+    return `${ring} M6 ${1.9 + dotOffset}h2v1.2h-2Z`;
   }
 
   function renderFlip(progress: number): string {
     const scale = Math.cos(2 * Math.PI * progress * progress * (3 - 2 * progress));
-    return blocks.map(({ x, y }) => `M${x} ${2 + Math.round((y - 2) * scale)}h1v1h-1Z`).join(' ');
+    const ring = blocks.map(({ x, y }) => `M${x} ${2 + Math.round((y - 2) * scale)}h1v1h-1Z`).join(' ');
+    const dotHeight = 1.2 * Math.abs(Math.round(scale * 2) / 2);
+    return `${ring} M6 ${2.5 - dotHeight / 2}h2v${dotHeight}h-2Z`;
   }
 
   onMount(() => {
@@ -217,22 +220,11 @@
   <h1 aria-label="grace."><span class="wordmark" aria-hidden="true">{#each wordmarkCells as row, y}<span class="wordmark-row">{#each row as cell, x}<span class="wordmark-cell" style:color={wordmarkColor(x, y)}>{cell}</span>{/each}</span>{/each}</span></h1>
 </div>
 <p class="tagline">pomodoro timer &amp; app/website blocker in 1</p>
-  {#if betaDownloadsReady}
-  <section aria-labelledby="downloads-heading">
-    <h2 id="downloads-heading">experimental downloads · 1.7.2-beta.1</h2>
-    <ul>
-      <li><a class="link-row" href="https://github.com/samir-scripts/grace/releases/download/v1.7.2-beta.1/grace-windows-x64-1.7.2-beta.1-setup.exe"><span class="row-label"><Download aria-hidden="true" />Windows x64</span><span class="pending">beta</span></a></li>
-      <li><a class="link-row" href="https://github.com/samir-scripts/grace/releases/download/v1.7.2-beta.1/grace-ubuntu-x64-1.7.2-beta.1.deb"><span class="row-label"><Download aria-hidden="true" />Ubuntu x64</span><span class="pending">beta</span></a></li>
-    </ul>
-    <p class="beta-note">Experimental beta — packaged integration unverified. Blocking and recovery behavior on Windows and Ubuntu remain unverified. Install only in a disposable test environment; updates are manual.</p>
-  </section>
-  {/if}
+  <GraceDemos />
   <section aria-labelledby="project-heading">
     <h2 id="project-heading">project</h2>
     <ul>
       <li><a class="link-row" href="https://github.com/samir-scripts/grace"><span class="row-label"><Github aria-hidden="true" />repository</span><span aria-hidden="true">›</span></a></li>
-      <li><a class="link-row" href="https://github.com/samir-scripts/grace/releases"><span class="row-label"><Tag aria-hidden="true" />releases</span><span aria-hidden="true">›</span></a></li>
-      <li><a class="link-row" href="https://github.com/samir-scripts/grace/blob/dev/README.md"><span class="row-label"><BookOpen aria-hidden="true" />documentation</span><span aria-hidden="true">›</span></a></li>
     </ul>
   </section>
   <section aria-labelledby="developer-heading">
@@ -272,7 +264,6 @@
   .link-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; padding: 10px 12px; font-size: 14px; line-height: 1.5; }
   .row-label { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
   .row-label :global(svg) { width: 16px; height: 16px; flex: 0 0 auto; }
-  .beta-note { margin: 0; padding: 4px 12px 16px; font-size: 12px; line-height: 1.8; color: var(--color-muted); }
   .pending { color: var(--color-muted); font-size: 12px; line-height: 1.5; }
   a.link-row { color: inherit; text-decoration: none; cursor: pointer; }
   a.link-row:hover, a.link-row:focus-visible { background: var(--color-row-hover); }
