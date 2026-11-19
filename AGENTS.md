@@ -40,7 +40,7 @@ Inherited routes/components are not a mandate to redesign or remove them. Inspec
 - Default logo mode is blocky flip. Native button activation cycles **blocky flip → ripple → ASCII donut → blocky flip**. Each mode persists until activation; no timed switching or smooth 3D/extruded replacement.
 - Preserve a static identity without JavaScript and under initial or live reduced-motion preferences. Keep one animation scheduler, suspend work when the document is hidden and remove listeners/cancel frames on unmount. Do not claim hidden-tab behavior verified unless the browser actually reports the page hidden.
 - Keep copy minimal and preserve the current tagline unless the task changes it. Avoid adding sections, controls or a new component framework without a request.
-- Repository, releases, documentation, developer GitHub and LinkedIn are real, same-tab links. Portfolio remains visibly `pending` and noninteractive until a real destination is supplied; never invent URLs.
+- Repository, releases, and the user guide use real, same-tab links. Show developer GitHub and LinkedIn as accessible SVG links in the bottom-right footer. Add a portfolio icon when it has a real destination.
 - Keep matching SVG icons left of each row label. Reuse installed `@lucide/svelte`; decorative icons use `aria-hidden="true"`. Preserve readable labels, right-aligned status/chevrons, native keyboard activation and visible focus styles.
 - Retain `@sveltejs/adapter-static`, prerendering and both root/custom-domain and repository-subpath builds. Use SvelteKit's base-path utilities for new internal or public-asset URLs. Do not introduce server-only endpoints or runtime secrets into the static page.
 
@@ -57,7 +57,7 @@ BASE_PATH=/grace-landing-page pnpm run build
 
 - `pnpm run check` is the full Svelte/TypeScript gate. Run it after source changes; run the production build after rendering, asset, route or configuration changes. Exercise both build variants when base-path behavior changes.
 - There is currently no `test` or `lint` script. Do not invent commands or install tooling just to claim coverage. If tests are introduced, run the entire affected test file/module, not only a selected passing test, and keep assertions tied to observable behavior.
-- For UI changes, open the actual page and inspect it at 320px and a desktop width. Check wrapping/overflow, icon alignment, keyboard focus, link destinations and pending rows. For animation changes, also exercise all modes, reduced motion and no-JavaScript output; check browser errors.
+- For UI changes, open the actual page and inspect it at 320px and a desktop width. Check wrapping/overflow, icon alignment, keyboard focus, and link destinations. For animation changes, also exercise all modes, reduced motion and no-JavaScript output; check browser errors.
 - For build/path changes, preview the generated output at the actual prefix. A development-page screenshot does not prove the static deployment works.
 - For documentation-only changes, validate paths, commands and claims against the repository; application rebuilds are unnecessary unless executable examples/configuration changed.
 - Keep pre-existing warnings distinct from regressions. The original red ASCII art has previously triggered a contrast warning; report actual audit results rather than hiding a finding or claiming a universally clean audit.

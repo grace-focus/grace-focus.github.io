@@ -122,13 +122,12 @@
   });
 </script>
 
-<section id="focus-session" aria-labelledby="focus-session-title">
+<section id="focus-session" aria-label="Focus demo">
   <!-- Preserve links to the former individual demos. -->
   <span id="blocking"></span>
   <span id="appearance"></span>
   <span id="statistics"></span>
   <span id="watch-demo"></span>
-  <h2 id="focus-session-title">Watch Grace protect a Writing session</h2>
 
   <a class="demo-trigger" bind:this={trigger} href={recording} aria-haspopup={ready ? 'dialog' : undefined} onclick={activateDemo}>
     <div class="frame">
@@ -165,11 +164,7 @@
         {/if}
       </button>
     {/if}
-    <p class="build">macOS beta (1.7.1) · recorded in Tart</p>
-    <nav aria-label="Get Grace">
-      <a href="https://github.com/samir-scripts/grace/releases">Download</a>
-      <a href="https://github.com/samir-scripts/grace/blob/dev/docs/user-guide.md">User guide</a>
-    </nav>
+    <a class="guide" href="https://github.com/samir-scripts/grace/blob/dev/docs/user-guide.md">User guide</a>
   </div>
 
   <details>
@@ -199,7 +194,6 @@
 <style>
   section { position: relative; min-width: 0; margin-bottom: 32px; scroll-margin-top: 16px; }
   section > span { position: absolute; top: 0; scroll-margin-top: 16px; }
-  h2 { margin: 0 0 8px; font-size: 0.85rem; font-weight: 500; line-height: 1.5; }
   .demo-trigger { display: block; border-radius: 4px; text-decoration: none; }
   .frame {
     overflow: hidden;
@@ -224,13 +218,10 @@
   button { display: inline-flex; gap: 6px; align-items: center; min-height: 36px; cursor: pointer; }
   button:hover { background: var(--color-row-hover); }
   .preview-control, .close { padding: 4px 6px; font-size: 0.75rem; }
-  .build, details { color: var(--color-muted); font-size: 0.75rem; line-height: 1.6; }
-  .build { margin: 0; }
-  details { margin-top: 8px; }
+  details { margin-top: 8px; color: var(--color-muted); font-size: 0.75rem; line-height: 1.6; }
   details p { margin: 4px 0 0; }
   summary { cursor: pointer; }
-  nav { display: flex; gap: 14px; margin: 2px 0 2px auto; font-size: 0.75rem; }
-  nav a { text-underline-offset: 3px; }
+  .guide { margin-inline-start: auto; padding: 10px 4px; font-size: 0.75rem; text-underline-offset: 3px; }
   :is(a, button, summary):focus-visible { outline: 2px solid var(--color-foreground); outline-offset: 3px; }
 
   dialog {
@@ -245,7 +236,7 @@
   }
   dialog::backdrop { background: rgba(14, 18, 25, 0.84); }
   dialog header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
-  dialog h2 { margin: 0; }
+  dialog h2 { margin: 0; font-size: 0.85rem; font-weight: 500; line-height: 1.5; }
   .close { min-height: 44px; white-space: nowrap; }
   dialog video { max-height: calc(100dvh - 105px); aspect-ratio: 3 / 2; background: #14191c; }
 </style>
